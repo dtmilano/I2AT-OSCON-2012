@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:gravity="right"
         android:inputType="numberDecimal" >
 
         <requestFocus />
@@ -41,6 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:gravity="right"
         android:inputType="numberDecimal" />
 
 </LinearLayout>

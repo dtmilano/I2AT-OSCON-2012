@@ -4,6 +4,11 @@
 package com.dtmilano.i2at.tc.test;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.ViewAsserts;
+import android.test.suitebuilder.annotation.SmallTest;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.EditText;
 
 import com.dtmilano.i2at.tc.TemperatureConverterActivity;
 
@@ -13,6 +18,10 @@ import com.dtmilano.i2at.tc.TemperatureConverterActivity;
  */
 public class TemperatureConverterActivityTests extends
         ActivityInstrumentationTestCase2<TemperatureConverterActivity> {
+
+    private TemperatureConverterActivity mActivity;
+    private EditText mCelsius;
+    private EditText mFahrenheit;
 
     /**
      * No-arg constructor.
@@ -34,6 +43,14 @@ public class TemperatureConverterActivityTests extends
      */
     protected void setUp() throws Exception {
         super.setUp();
+
+        mActivity = getActivity();
+        assertNotNull(mActivity);
+
+        mCelsius = (EditText)mActivity.findViewById(com.dtmilano.i2at.tc.R.id.celsius);
+        assertNotNull(mCelsius);
+        mFahrenheit = (EditText)mActivity.findViewById(com.dtmilano.i2at.tc.R.id.fahrenheit);
+        assertNotNull(mFahrenheit);
     }
 
     /* (non-Javadoc)
@@ -47,7 +64,7 @@ public class TemperatureConverterActivityTests extends
      * Test method for {@link com.dtmilano.i2at.tc.TemperatureConverterActivity#onCreate(android.os.Bundle)}.
      */
     public final void testOnCreateBundle() {
-        fail("Not yet implemented");
+        assertNotNull(mActivity);
     }
 
     /**
@@ -57,4 +74,37 @@ public class TemperatureConverterActivityTests extends
         fail("Not yet implemented");
     }
 
+    @SmallTest
+    public void testFieldsOnScreen() {
+        final View origin = 
+                mActivity.getWindow().getDecorView();
+        ViewAsserts.assertOnScreen(origin, mCelsius);
+        ViewAsserts.assertOnScreen(origin, mFahrenheit);
+    }
+    
+    @SmallTest
+    public void testAlignment() {
+            ViewAsserts.assertRightAligned(mCelsius,
+                 mFahrenheit);
+            ViewAsserts.assertLeftAligned(mCelsius,
+                 mFahrenheit);
+    }
+    
+    @SmallTest
+    public void testFieldsShouldStartEmpty() {
+            assertTrue("".equals(mCelsius.getText()
+                 .toString()));
+            assertTrue("".equals(mFahrenheit.getText()
+                 .toString()));
+    }
+    
+    @SmallTest
+    public void testJustification() {
+            final int expected = 
+            Gravity.RIGHT|Gravity.CENTER_VERTICAL;
+            assertEquals(expected,
+                 mCelsius.getGravity());
+            assertEquals(expected,
+                 mFahrenheit.getGravity());
+    }
 }

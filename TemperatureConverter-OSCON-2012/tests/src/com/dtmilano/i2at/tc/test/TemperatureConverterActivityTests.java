@@ -4,12 +4,14 @@
 package com.dtmilano.i2at.tc.test;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.UiThreadTest;
 import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.EditText;
 
+import com.dtmilano.i2at.tc.EditNumber;
+import com.dtmilano.i2at.tc.TemperatureConverter;
 import com.dtmilano.i2at.tc.TemperatureConverterActivity;
 
 /**
@@ -20,8 +22,8 @@ public class TemperatureConverterActivityTests extends
         ActivityInstrumentationTestCase2<TemperatureConverterActivity> {
 
     private TemperatureConverterActivity mActivity;
-    private EditText mCelsius;
-    private EditText mFahrenheit;
+    private EditNumber mCelsius;
+    private EditNumber mFahrenheit;
 
     /**
      * No-arg constructor.
@@ -47,9 +49,9 @@ public class TemperatureConverterActivityTests extends
         mActivity = getActivity();
         assertNotNull(mActivity);
 
-        mCelsius = (EditText)mActivity.findViewById(com.dtmilano.i2at.tc.R.id.celsius);
+        mCelsius = (EditNumber)mActivity.findViewById(com.dtmilano.i2at.tc.R.id.celsius);
         assertNotNull(mCelsius);
-        mFahrenheit = (EditText)mActivity.findViewById(com.dtmilano.i2at.tc.R.id.fahrenheit);
+        mFahrenheit = (EditNumber)mActivity.findViewById(com.dtmilano.i2at.tc.R.id.fahrenheit);
         assertNotNull(mFahrenheit);
     }
 
@@ -106,5 +108,20 @@ public class TemperatureConverterActivityTests extends
                  mCelsius.getGravity());
             assertEquals(expected,
                  mFahrenheit.getGravity());
+    }
+    
+    @UiThreadTest
+    public void testFahrenheitToCelsiusConversion() {
+        mCelsius.clear();
+        mFahrenheit.clear();
+        final double f = 32.5;
+        mFahrenheit.requestFocus();
+        mFahrenheit.setNumber(f);
+        mCelsius.requestFocus();
+        final double expected =
+              TemperatureConverter.fahrenheitToCelsius(f);
+        final double actual = mCelsius.getNumber();
+        final double delta = Math.abs(expected - actual);
+        assertTrue(delta < 0.005);
     }
 }

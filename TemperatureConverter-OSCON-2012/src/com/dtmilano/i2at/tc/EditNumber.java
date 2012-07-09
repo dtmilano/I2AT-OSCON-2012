@@ -1,6 +1,7 @@
 /**
  * 
  */
+
 package com.dtmilano.i2at.tc;
 
 import android.content.Context;
@@ -9,7 +10,6 @@ import android.widget.EditText;
 
 /**
  * @author diego
- *
  */
 public class EditNumber extends EditText {
 
@@ -41,18 +41,19 @@ public class EditNumber extends EditText {
     }
 
     public void clear() {
-        // TODO Auto-generated method stub
-        
+        setText(null);
     }
 
     public void setNumber(double f) {
-        // TODO Auto-generated method stub
-        
+        setText(Double.toString(f));
     }
 
     public double getNumber() {
-        // TODO Auto-generated method stub
-        return 0;
+        final String s = getText().toString();
+        if ("".equals(s)) {
+            return Double.NaN;
+        }
+        return Double.valueOf(s);
     }
 
 }

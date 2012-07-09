@@ -19,7 +19,7 @@
         android:text="@string/celsius"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <EditText
+    <com.dtmilano.i2at.tc.EditNumber
         android:id="@+id/celsius"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
         android:inputType="numberDecimal" >
 
         <requestFocus />
-    </EditText>
+    </com.dtmilano.i2at.tc.EditNumber>
 
     <TextView
         android:id="@+id/fahrenheit_label"
@@ -37,7 +37,7 @@
         android:text="@string/fahrenheit"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <EditText
+    <com.dtmilano.i2at.tc.EditNumber
         android:id="@+id/fahrenheit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

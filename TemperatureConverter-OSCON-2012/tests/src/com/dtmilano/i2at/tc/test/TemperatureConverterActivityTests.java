@@ -122,6 +122,23 @@ public class TemperatureConverterActivityTests extends
               TemperatureConverter.fahrenheitToCelsius(f);
         final double actual = mCelsius.getNumber();
         final double delta = Math.abs(expected - actual);
-        assertTrue(delta < 0.005);
+        assertTrue("delta=" + delta + " larger than expected", delta < 0.005);
+    }
+    
+    @SmallTest
+    public void testFahrenheitToCelsiusConversion_input() throws Throwable {
+        runTestOnUiThread(new Runnable() {
+            @Override
+            public void run() { mCelsius.clear(); mFahrenheit.clear(); mCelsius.requestFocus(); }
+        });
+           
+        final String c = "-123.4";
+        getInstrumentation().sendStringSync(c);
+        assertEquals(c, mCelsius.getText().toString());
+        final double expected =
+            TemperatureConverter.celsiusToFahrenheit(Double.parseDouble(c));
+        final double actual = mFahrenheit.getNumber();
+        final double delta = Math.abs(expected - actual);
+        assertTrue("delta=" + delta + " larger than expected", delta < 0.005);
     }
 }

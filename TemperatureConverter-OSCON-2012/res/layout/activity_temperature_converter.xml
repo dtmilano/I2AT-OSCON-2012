@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:i2at="http://schemas.android.com/apk/res/com.dtmilano.i2at.tc"
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,7 +26,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:gravity="center_vertical|right"
-        android:inputType="numberDecimal" >
+        android:inputType="numberSigned|numberDecimal"
+        i2at:decimalPlaces="2" >
 
         <requestFocus />
     </com.dtmilano.i2at.tc.EditNumber>
@@ -43,6 +45,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:gravity="center_vertical|right"
-        android:inputType="numberDecimal" />
+        android:inputType="numberSigned|numberDecimal"
+        i2at:decimalPlaces="2" />
 
 </LinearLayout>

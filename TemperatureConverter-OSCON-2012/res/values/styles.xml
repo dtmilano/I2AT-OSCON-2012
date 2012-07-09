@@ -2,4 +2,7 @@
 
     <style name="AppTheme" parent="android:Theme.Light" />
 
+    <declare-styleable name="i2at">
+        <attr name="decimalPlaces" format="integer" />
+    </declare-styleable>
 </resources>

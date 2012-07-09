@@ -3,7 +3,10 @@
  */
 package com.dtmilano.i2at.tc.test;
 
+import android.content.Context;
 import android.test.AndroidTestCase;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import com.dtmilano.i2at.tc.EditNumber;
 
@@ -32,6 +35,7 @@ public class EditNumberTests extends AndroidTestCase {
         super.setUp();
         
         mEditNumber = new EditNumber(getContext());
+        mEditNumber.setDecimalPlaces(2);
     }
 
     /* (non-Javadoc)
@@ -79,11 +83,10 @@ public class EditNumberTests extends AndroidTestCase {
      * Test method for {@link com.dtmilano.i2at.tc.EditNumber#setNumber(double)}.
      */
     public final void testSetNumber() {
-        final double d = 123.45;
-        mEditNumber.setNumber(d);
-        final String expected = Double.toString(d);
-        final String actual = 
-             mEditNumber.getText().toString();
+        final double expected = 123.45;
+        mEditNumber.setNumber(expected);
+        final double actual = 
+             mEditNumber.getNumber();
         assertEquals(expected, actual);
     }
 
@@ -98,4 +101,16 @@ public class EditNumberTests extends AndroidTestCase {
         assertEquals(expected, actual);
     }
 
+    public final void testSetDecimalPlacesAttributeFromXml() {
+        LayoutInflater inflater = (LayoutInflater)getContext()
+             .getSystemService(
+                  Context.LAYOUT_INFLATER_SERVICE);
+        View root = inflater.inflate(
+            com.dtmilano.i2at.tc.R.layout.activity_temperature_converter, null);
+        EditNumber editNumber = (EditNumber)
+            root.findViewById(com.dtmilano.i2at.tc.R.id.celsius);
+        assertNotNull(editNumber);
+        // i2at:decimalPlaces="2" is set in main.xml
+        assertEquals(2, editNumber.getDecimalPlaces());
+    }
 }

@@ -65,4 +65,15 @@ public class TemperatureConverterTests extends TestCase {
         }
     }
 
+    /**
+     * Test method for {@link TemperatureConverter#fahrenheitToCelsius(double)}.
+     */
+    public final void testCelsiusToFahrenheit() {
+        for (double c: sConversionTableDouble.keySet()) {
+            final double f = sConversionTableDouble.get(c);
+            final double fa = TemperatureConverter.celsiusToFahrenheit(c);
+            final double delta = Math.abs(fa - f);
+            assertTrue("delta=" + delta + " for f=" + f + " fa=" + fa, delta < 0.005);
+        }
+    }
 }

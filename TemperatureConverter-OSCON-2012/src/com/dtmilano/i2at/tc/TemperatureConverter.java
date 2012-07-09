@@ -13,4 +13,9 @@ public class TemperatureConverter {
         return (f - 32) * 5 / 9.0;
     }
 
+    public static double celsiusToFahrenheit(double temp) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
 }

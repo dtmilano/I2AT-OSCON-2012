@@ -9,6 +9,10 @@ package com.dtmilano.i2at.tc;
  */
 public class TemperatureConverter {
 
+    private TemperatureConverter() {
+        // do nothing
+    }
+    
     public static double fahrenheitToCelsius(double f) {
         return (f - 32) * 5 / 9.0;
     }

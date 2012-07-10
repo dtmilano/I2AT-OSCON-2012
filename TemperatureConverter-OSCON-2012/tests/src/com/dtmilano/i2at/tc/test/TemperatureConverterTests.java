@@ -8,6 +8,7 @@ import com.dtmilano.i2at.tc.TemperatureConverter;
 
 import junit.framework.TestCase;
 
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
 
 /**
@@ -75,5 +76,14 @@ public class TemperatureConverterTests extends TestCase {
             final double delta = Math.abs(fa - f);
             assertTrue("delta=" + delta + " for f=" + f + " fa=" + fa, delta < 0.005);
         }
+    }
+    
+    public final void testPrivateConstructor() throws Exception {
+        Constructor<TemperatureConverter> ctor =
+           TemperatureConverter.class.getDeclaredConstructor();
+        ctor.setAccessible(true);
+        TemperatureConverter tc = 
+           ctor.newInstance((Object[])null);
+        assertNotNull(tc);
     }
 }

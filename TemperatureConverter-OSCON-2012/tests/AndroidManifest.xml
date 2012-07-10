@@ -4,20 +4,25 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="15"/>
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="15" />
 
     <instrumentation
-        android:name="android.test.InstrumentationTestRunner"
+        android:name="com.neenbedankt.android.test.XMLInstrumentationTestRunner"
+        android:label="TemperatureConverter tests"
         android:targetPackage="com.dtmilano.i2at.tc" />
 
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <uses-library android:name="android.test.runner" />
-        <activity android:name="TemperatureConverterTestsActivity">
+
+        <activity android:name="TemperatureConverterTestsActivity" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

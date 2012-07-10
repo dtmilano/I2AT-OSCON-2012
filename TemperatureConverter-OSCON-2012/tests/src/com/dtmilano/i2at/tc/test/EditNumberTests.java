@@ -113,4 +113,16 @@ public class EditNumberTests extends AndroidTestCase {
         // i2at:decimalPlaces="2" is set in main.xml
         assertEquals(2, editNumber.getDecimalPlaces());
     }
+    
+    public final void testGetNumber_emptyText() {
+        mEditNumber.setText("");
+        final double actual = mEditNumber.getNumber();
+        assertEquals(Double.NaN, actual);
+    }
+       
+    public final void testGetNumber_nullText() {
+        mEditNumber.setText(null);
+        final double actual = mEditNumber.getNumber();
+        assertEquals(Double.NaN, actual);
+    }
 }

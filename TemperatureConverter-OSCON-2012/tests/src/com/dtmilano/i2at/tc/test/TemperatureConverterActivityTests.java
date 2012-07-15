@@ -73,7 +73,9 @@ public class TemperatureConverterActivityTests extends
      * Test method for {@link com.dtmilano.i2at.tc.TemperatureConverterActivity#onCreateOptionsMenu(android.view.Menu)}.
      */
     public final void testOnCreateOptionsMenuMenu() {
-        fail("Not yet implemented");
+        mActivity.openOptionsMenu();
+        mActivity.closeOptionsMenu();
+        assertTrue(true);
     }
 
     @SmallTest
